@@ -1,10 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Nav, NavItem } from './components/Nav'
-import Home from './components/Home'
-import Game from './components/Game'
-import Upcoming from './components/Upcoming'
-import Search from './components/Search'
-import SearchBar from './components/SearchBar'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Nav, NavItem } from './components/Nav';
+import Home from './components/Home';
+import Game from './components/Game';
+import Upcoming from './components/Upcoming';
+import Search from './components/Search';
+import SearchBar from './components/SearchBar';
+import NotFound from './components/NotFound';
 
 const App = () => {
 
@@ -24,10 +25,11 @@ const App = () => {
                 <Route path='/game/:id' element={<Game />} />
                 <Route path='/upcoming' element={<Upcoming />} />
                 <Route path='/search' element={<Search />} />
+                <Route path='*' element={<NotFound />} />
             </Routes>
         </Router>
     )
 }
 
 
-export default App
+export default App;

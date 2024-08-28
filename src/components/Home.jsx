@@ -12,7 +12,7 @@ const Home = () => {
                 </p>
                 <p className="w-4/5 sm:w-1/2 m-auto mt-8 text-white font-medium text-xl leading-relaxed">
                     On top of upcoming games, find information about top rated games etc. All this is powered
-                    by the awesome <a className="font-bold" href="igdb.com">IGDB</a> api!
+                    by the awesome <a className="font-bold" href="https://www.igdb.com/">IGDB</a> api!
                 </p>
             </section>
             <section className="flex flex-col sm:flex-row">

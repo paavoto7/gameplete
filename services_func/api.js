@@ -8,8 +8,8 @@ const SEARCH_PARAMS = {
                 limit 10;`, 
     "upcoming": `fields name, rating, cover.image_id, first_release_date;
                 sort hypes desc;
-                where first_release_date > ${~~(Date.now() / 1000)};
-                limit 20;`,
+                limit 20;
+                where first_release_date > `,
     "game": `fields name, summary, aggregated_rating, rating, platforms.name, cover.image_id,
                 artworks.image_id, artworks.width, involved_companies.company.name, involved_companies.developer,
                 genres.name, release_dates.human, expansions.name, similar_games.cover.image_id, similar_games.name,
@@ -81,12 +81,6 @@ class Api {
         )
     }
 
-    async getGames(param) {
-        return await this.request("games",
-            SEARCH_PARAMS[param]
-        )
-    }
-
     async getPopular() {
         // Need to fetch in two goes as the multiquery doesn't seem to support dynamic queries
         
@@ -100,9 +94,10 @@ class Api {
         )
     }
 
-    async getUpcoming() {
+    async getUpcoming(date) {
+        // Date needs to be added this way because in global it is zero
         return await this.request("games",
-            SEARCH_PARAMS["upcoming"]
+            `SEARCH_PARAMS["upcoming"]${date};`
         )
     }
 

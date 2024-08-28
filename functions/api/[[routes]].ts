@@ -1,5 +1,4 @@
 import { Hono } from 'hono';
-import { cors } from 'hono/cors';
 import { handle } from "hono/cloudflare-pages";
 import { secureHeaders } from 'hono/secure-headers';
 import Api from "../../services_func/api";
@@ -37,7 +36,7 @@ app.get("/popular", async (c) => {
 app.get("/upcoming", async (c) => {
   await api.getToken(c.env);
   try {
-      const game_data = await api.getUpcoming();
+      const game_data = await api.getUpcoming(~~Date.now());
       return c.json(game_data);
   } catch (error) {
     return c.status(500)

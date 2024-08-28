@@ -97,7 +97,7 @@ class Api {
     async getUpcoming(date) {
         // Date needs to be added this way because in global it is zero
         return await this.request("games",
-            `SEARCH_PARAMS["upcoming"]${date};`
+            `${SEARCH_PARAMS["upcoming"]}${date};`
         )
     }
 

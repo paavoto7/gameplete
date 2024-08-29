@@ -22,7 +22,6 @@ const Game = () => {
     }
 
     const gamedata = result.data[0];
-    //const gamedata = result.data;
 
     // Find the widest image for background
     const bg = gamedata.artworks?.reduce(

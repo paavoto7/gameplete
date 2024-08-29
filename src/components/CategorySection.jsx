@@ -14,7 +14,7 @@ const CategorySection = ({ id }) => {
     const expansions = gamedata?.expansions
         ?.map(expansion => ({
             ...expansion,
-            "name": <Link to={`/game/${expansion.id}`} className="text-blue-600 hover:border-b-2">{expansion.name}</Link>
+            "name": <Link to={`/game/${expansion.id}`} className="text-[#8CB4FF] hover:border-b-2">{expansion.name}</Link>
         }));
 
     return (

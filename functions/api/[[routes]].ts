@@ -35,8 +35,9 @@ app.get("/popular", async (c) => {
 
 app.get("/upcoming", async (c) => {
   await api.getToken(c.env);
+  const date = ~~(Date.now() / 1000);
   try {
-      const game_data = await api.getUpcoming(~~Date.now());
+      const game_data = await api.getUpcoming(date);
       return c.json(game_data);
   } catch (error) {
     return c.status(500)

@@ -6,7 +6,7 @@ const SEARCH_PARAMS = {
                 sort total_rating desc;
                 where total_rating_count > 20 & aggregated_rating_count >= 4;
                 limit 10;`, 
-    "upcoming": `fields name, rating, cover.image_id, first_release_date;
+    "upcoming": `fields name, rating, hypes, cover.image_id, release_dates.human, first_release_date;
                 sort hypes desc;
                 limit 20;
                 where first_release_date > `,

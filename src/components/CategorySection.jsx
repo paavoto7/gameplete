@@ -20,13 +20,13 @@ const CategorySection = ({ id }) => {
     return (
         <>
             {gamedata &&
-            <div className="grid grid-cols-2 gap-x-4 lg:grid-cols-3 lg:gap-x-0 mt-4 2xl:w-4/5">
-                <InfoCategory className="row-span-2" header="Platforms" name={gamedata.platforms} loop={true} />
-                <InfoCategory header="Expansions" name={expansions} loop={true} />
-                <InfoCategory header="Genres" name={gamedata?.genres} loop={true} />
-                <InfoCategory header="Developer(s)" name={developers} loop={true} />
-                <InfoCategory header="Game engine(s)" name={gamedata?.game_engines} loop={true} />
-                <InfoCategory header="Game modes" name={gamedata?.game_modes} loop={true} />
+            <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-0 mt-4 2xl:w-4/5">
+            <InfoCategory header="Platforms" name={gamedata.platforms} />
+            <InfoCategory header="Genres" name={gamedata?.genres} />
+            <InfoCategory header="Expansions" name={expansions} />
+            <InfoCategory header="Developer(s)" name={developers} />
+            <InfoCategory header="Game engine(s)" name={gamedata?.game_engines} />
+            <InfoCategory header="Game modes" name={gamedata?.game_modes} />
             </div>}
         </>
     );

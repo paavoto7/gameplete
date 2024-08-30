@@ -19,7 +19,7 @@ const GameList = ({ name }) => {
     const gamedata = result.data;
 
     return (
-        <div className="flex flex-col w-11/12 sm:w-[45%] m-auto mb-14 text-white mt-20">
+        <div className="flex flex-col w-11/12 sm:w-[45%] m-auto sm:mb-14 text-white sm:mt-20">
             <ImageLinkGrid name={name} >
                 {gamedata?.map(game =>
                         <ImageLink key={game.id} game={game} />

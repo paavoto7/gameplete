@@ -64,7 +64,7 @@ const ThumbnailGallery = ({ artworks, currentImage, setCurrentImage }) => {
                         className={`w-28 sm:w-40 hover:brightness-[.80] cursor-pointer rounded-md transition ease-in-out duration-500
                             ${image.image_id === currentImage.image_id ? " shadow-[5px_5px_40px_-7px_#ccc]" : ""}`}
                         cover={image}
-                        size="full_hd"  
+                        size="full_hd"
                     />
                 </div>
                 )

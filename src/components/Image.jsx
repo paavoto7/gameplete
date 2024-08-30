@@ -18,7 +18,7 @@ const Image = ({ cover, name, className="", size="cvr_big" }) => {
     return (
         <img
             loading="lazy"
-            alt={`Image of ${name}`}
+            alt={`Image of ${name ?? cover.image_id}`}
             className={className}
             src={`${IMAGE_URL}${IMAGE_SIZES[size]}/${cover.image_id}.webp`}
         />

@@ -19,10 +19,10 @@ const ImageViewer = ({ artworks }) => {
  
     return (
         <div className="pb-10">
-            <div tabIndex={0} className="flex relative m-auto mt-6 h-72 sm:h-[40rem] w-11/12 sm:w-5/6 2xl:w-3/4 text-white focus:size-full">
+            <div tabIndex={0} className="flex relative m-auto mt-6 mx-2 h-72 sm:h-[40rem] sm:w-5/6 2xl:w-3/4 text-white focus:size-full">
                 <Button id="left" dir={-1} handleChange={handleChange} />
                 <Image
-                    className="max-h-[90%] max-w-[80%] sm:max-w-[85%] xl:max-w-[90%] m-auto rounded-md border-2"
+                    className="max-h-[90%] max-w-[75%] sm:max-w-[85%] xl:max-w-[90%] m-auto rounded-md border-2"
                     cover={currentImage}
                     name={currentImage.image_id}
                     size="full_hd"
@@ -74,7 +74,7 @@ const ThumbnailGallery = ({ artworks, currentImage, setCurrentImage }) => {
 }
 
 const Button = ({ id, dir, handleChange }) => {
-    const arrow = id === "right" ? ">" : "<";
+    const arrow = id === "right" ? <>&rarr;</> : <>&larr;</>;
 
     return (
         <button
@@ -82,7 +82,7 @@ const Button = ({ id, dir, handleChange }) => {
             id={id}
             onClick={() => handleChange(dir)}
         >
-            <span className="font-bold text-2xl md:text-3xl xl:text-4xl leading-8 text-center">{arrow}</span>
+            <span className="font-bold text-2xl md:text-3xl xl:text-4xl text-center">{arrow}</span>
         </button>
     )
 }

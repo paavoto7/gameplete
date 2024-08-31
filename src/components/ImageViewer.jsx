@@ -19,7 +19,7 @@ const ImageViewer = ({ artworks }) => {
  
     return (
         <div className="pb-10">
-            <div tabIndex={0} className="flex relative m-auto mt-6 mx-2 h-72 sm:h-[40rem] sm:w-5/6 2xl:w-3/4 text-white focus:size-full">
+            <div tabIndex={0} className="flex relative m-auto mt-6 mx-2 sm:mx-auto h-72 sm:h-[40rem] sm:w-5/6 2xl:w-3/4 text-white focus:size-full">
                 <Button id="left" dir={-1} handleChange={handleChange} />
                 <Image
                     className="max-h-[90%] max-w-[75%] sm:max-w-[85%] xl:max-w-[90%] m-auto rounded-md border-2"

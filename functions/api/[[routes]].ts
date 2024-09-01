@@ -4,6 +4,22 @@ import { secureHeaders } from 'hono/secure-headers';
 import { z } from "zod";
 import { zValidator } from '@hono/zod-validator';
 import Api from "../../services_func/api";
+import ZodErrorHandler from "../../utils/zodErrorHandler";
+
+const searchSchema = z.object({
+  query: z
+    .string()
+    .min(3, { message: "Must be 3 or more characters long" })
+    .max(100, { message: "Must be 100 characters or less" })
+});
+
+const gameSchema = z.object({
+  id: z.coerce.number({ message: "The id must be an integer" }).int()
+});
+
+const upcomingSchema = z.object({
+  platid: z.enum(["6", "48", "49", "130", "167", "169"], { message: "Must be one of the given choices" }).optional()
+})
 
 type Bindings = {
   CLIENT_SECRET: string,
@@ -18,9 +34,8 @@ const api = new Api();
 app.get("/game/:id",
   zValidator(
     "param",
-    z.object({
-      id: z.coerce.number().int()
-    })
+    gameSchema,
+    ZodErrorHandler
   ),
   async (c) => {
     await api.getToken(c.env);
@@ -57,9 +72,8 @@ app.get("/anticipated", async (c) => {
 app.get("/upcoming",
   zValidator(
     "query",
-    z.object({
-      platid: z.enum(["6", "48", "49", "130", "167", "169"]).optional()
-    })
+    upcomingSchema,
+    ZodErrorHandler
   ),
   async (c) => {
     await api.getToken(c.env);
@@ -76,12 +90,8 @@ app.get("/upcoming",
 app.get("/search", 
   zValidator(
     "query",
-    z.object({
-      query: z
-        .string()
-        .min(3, { message: "Must be 3 or more characters long" })
-        .max(100, { message: 'Must be 100 characters or less' })
-    })
+    searchSchema,
+    ZodErrorHandler
   ),
   async (c) => {
     await api.getToken(c.env);

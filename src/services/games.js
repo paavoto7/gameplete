@@ -23,8 +23,13 @@ const getPopular = async () => {
     return await request(`${baseUrl}/popular`);
 }
 
-const getUpcoming = async () => {
-    return await request(`${baseUrl}/upcoming`);
+const getAnticipated = async () => {
+    return await request(`${baseUrl}/anticipated`);
+}
+
+const getUpcoming = async (platid) => {
+    const query = platid ? `?platid=${platid}` : ``;
+    return await request(`${baseUrl}/upcoming${query}`);
 }
 
 const getTop = async () => {
@@ -38,4 +43,4 @@ const searchGames = async (params) => {
     return await request(`${baseUrl}/search?query=${params}`);
 }
 
-export default { getGameById, getUpcoming, getPopular, searchGames, getTop }
+export default { getGameById, getUpcoming, getPopular, searchGames, getTop, getAnticipated }

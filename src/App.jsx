@@ -3,6 +3,7 @@ import { Nav, NavItem } from './components/Nav';
 import Home from './components/Home';
 import Game from './components/Game';
 import Upcoming from './components/Upcoming';
+import Anticipated from './components/Anticipated';
 import Search from './components/Search';
 import SearchBar from './components/SearchBar';
 import NotFound from './components/NotFound';
@@ -16,7 +17,7 @@ const App = () => {
                 <Nav>
                     <NavItem route="/" text="Home" />
                     <NavItem route="/upcoming" text="Upcoming" />
-                    <NavItem route="/popular" text="Popular" />
+                    <NavItem route="/anticipated" text="Anticipated" />
                 </Nav>
                 <SearchBar />
             </header>
@@ -24,6 +25,7 @@ const App = () => {
                 <Route path='/' element={<Home />} />
                 <Route path='/game/:id' element={<Game />} />
                 <Route path='/upcoming' element={<Upcoming />} />
+                <Route path='/anticipated' element={<Anticipated />} />
                 <Route path='/search' element={<Search />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>

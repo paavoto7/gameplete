@@ -9,7 +9,7 @@ const SEARCH_PARAMS = {
     "anticipated": `fields name, rating, hypes, cover.image_id, release_dates.human, first_release_date;
                 sort hypes desc;
                 limit 20;
-                where first_release_date > `,
+                where cover.image_id != null & first_release_date > `,
     "upcoming": `fields name, rating, hypes, cover.image_id, release_dates.human, first_release_date;
                 sort first_release_date asc;
                 limit 20;`,
@@ -103,7 +103,7 @@ class Api {
 
         return await this.request("games",
             `${SEARCH_PARAMS["upcoming"]}
-            where platforms = ${platid} & first_release_date > ${date};`
+            where cover.image_id != null & platforms = ${platid} & first_release_date > ${date};`
         )
     }
 

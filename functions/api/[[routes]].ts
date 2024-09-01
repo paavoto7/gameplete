@@ -58,7 +58,7 @@ app.get("/upcoming",
   zValidator(
     "query",
     z.object({
-      platid: z.enum(["3", "6", "14", "48", "49", "130", "167", "169"]).optional()
+      platid: z.enum(["6", "48", "49", "130", "167", "169"]).optional()
     })
   ),
   async (c) => {

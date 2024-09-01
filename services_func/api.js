@@ -98,12 +98,12 @@ class Api {
         )
     }
 
-    async getUpcoming(date, platid="(3,6,14,48,49,130,167,169)") {
+    async getUpcoming(date, platid="6,48,49,130,167,169") {
         // Date needs to be added this way because in global it is zero
 
         return await this.request("games",
             `${SEARCH_PARAMS["upcoming"]}
-            where cover.image_id != null & platforms = ${platid} & first_release_date > ${date};`
+            where cover.image_id != null & platforms = (${platid}) & first_release_date > ${date};`
         )
     }
 

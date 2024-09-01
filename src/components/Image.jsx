@@ -17,6 +17,7 @@ const Image = ({ cover, name, className="", size="cvr_big" }) => {
     
     return (
         <img
+            referrerPolicy="no-referrer"
             loading="lazy"
             alt={`Image of ${name ?? cover.image_id}`}
             className={className}

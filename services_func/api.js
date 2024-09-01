@@ -6,10 +6,13 @@ const SEARCH_PARAMS = {
                 sort total_rating desc;
                 where total_rating_count > 20 & aggregated_rating_count >= 4;
                 limit 10;`, 
-    "upcoming": `fields name, rating, hypes, cover.image_id, release_dates.human, first_release_date;
+    "anticipated": `fields name, rating, hypes, cover.image_id, release_dates.human, first_release_date;
                 sort hypes desc;
                 limit 20;
                 where first_release_date > `,
+    "upcoming": `fields name, rating, hypes, cover.image_id, release_dates.human, first_release_date;
+                sort first_release_date asc;
+                limit 20;`,
     "game": `fields name, summary, aggregated_rating, rating, platforms.name, cover.image_id,
                 artworks.image_id, artworks.width, involved_companies.company.name, involved_companies.developer,
                 genres.name, release_dates.human, expansions.name, similar_games.cover.image_id, similar_games.name,
@@ -42,7 +45,7 @@ class Api {
         try {
             const response = await fetch(this.url, { method: "POST" });
             if (!response.ok) {
-                throw new Error(`Problem fetching data ${url}`);
+                throw new Error(`Problem occured`);
             }
             const creds = await response.json();
             this.token = creds.access_token;
@@ -95,10 +98,19 @@ class Api {
         )
     }
 
-    async getUpcoming(date) {
+    async getUpcoming(date, platid="(3,6,14,48,49,130,167,169)") {
+        // Date needs to be added this way because in global it is zero
+
+        return await this.request("games",
+            `${SEARCH_PARAMS["upcoming"]}
+            where platforms = ${platid} & first_release_date > ${date};`
+        )
+    }
+
+    async getAnticipated(date) {
         // Date needs to be added this way because in global it is zero
         return await this.request("games",
-            `${SEARCH_PARAMS["upcoming"]}${date};`
+            `${SEARCH_PARAMS["anticipated"]}${date};`
         )
     }
 

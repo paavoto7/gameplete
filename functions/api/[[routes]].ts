@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { handle } from "hono/cloudflare-pages";
 import { secureHeaders } from 'hono/secure-headers';
+import { cache } from 'hono/cache';
 import { z } from "zod";
 import { zValidator } from '@hono/zod-validator';
 import Api from "../../services_func/api";
@@ -30,6 +31,14 @@ const app = new Hono<{ Bindings: Bindings }>().basePath("/api");
 app.use(secureHeaders())
 
 const api = new Api();
+
+app.get(
+  "*",
+  cache({
+    cacheName: "games",
+    cacheControl: "max-age=3600",
+  })
+)
 
 app.get("/game/:id",
   zValidator(

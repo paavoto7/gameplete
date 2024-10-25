@@ -94,7 +94,7 @@ class Api {
 
         return await this.request("games", 
             `fields name, cover.image_id;
-            where id = (${pop.map(game => game.game_id)});`
+            where id = (${pop.map(game => game.game_id)}) & themes.slug != "erotic";`
         )
     }
 

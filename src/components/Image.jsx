@@ -19,9 +19,9 @@ const Image = ({ cover, name, className="", size="cvr_big" }) => {
         <img
             referrerPolicy="no-referrer"
             loading="lazy"
-            alt={`Image of ${name ?? cover.image_id}`}
+            alt={`Image of ${name ?? cover?.image_id}`}
             className={className}
-            src={`${IMAGE_URL}${IMAGE_SIZES[size]}/${cover.image_id}.webp`}
+            src={`${IMAGE_URL}${IMAGE_SIZES[size]}/${cover?.image_id}.webp`}
         />
     )
 }

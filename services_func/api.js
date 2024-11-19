@@ -1,4 +1,3 @@
-const AUTH_URL = "https://id.twitch.tv/oauth2/token";
 const BASE_URL = "https://api.igdb.com/v4/";
 
 const SEARCH_PARAMS = {
@@ -35,15 +34,31 @@ class Api {
             return;
         }
 
+        let body;
+
         if (env) {
+            body = {
+                client_id: env.CLIENT_ID,
+                client_secret: env.CLIENT_SECRET,
+                grant_type: "client_credentials"
+            };
             this.id = env.CLIENT_ID;
-            this.url = `${AUTH_URL}?client_id=${env.CLIENT_ID}&client_secret=${env.CLIENT_SECRET}&grant_type=client_credentials`;
+            this.url = `${env.AUTH_URL}`;
+        } else {
+            throw new Error("Could not form the URL.")
         }
 
         if (!this.id) throw new Error(`Problem fetching data`); 
 
         try {
-            const response = await fetch(this.url, { method: "POST" });
+            const response = await fetch(this.url, {
+                method: "POST",
+                headers:  {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: new URLSearchParams(body)
+
+            });
             if (!response.ok) {
                 throw new Error(`Problem occured`);
             }

@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl = "/api";
 
 const request = async (url) => {
     try {

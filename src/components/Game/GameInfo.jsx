@@ -1,4 +1,4 @@
-import { Image } from "./Image";
+import { Image } from "../common/Image";
 import InfoCategory from "./InfoCategory";
 import CategorySection from "./CategorySection";
 

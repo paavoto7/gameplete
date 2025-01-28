@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-import games from "../services/games";
-import ImageLink from "./ImageLink";
-import LoadDiv from "./LoadDiv";
+import games from "../../services/games";
+import ImageLink from "../common/ImageLink";
+import LoadDiv from "../common/LoadDiv";
 
 const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams();

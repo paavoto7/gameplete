@@ -1,4 +1,4 @@
-import ImageLink from "./ImageLink";
+import ImageLink from "../common/ImageLink";
 
 const ContentGrid = ({ gamedata }) => {
 

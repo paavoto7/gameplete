@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Image } from "./Image";
+import { Image } from "../common/Image";
 
 const ImageViewer = ({ artworks }) => {
     const [currentImage, setCurrentImage] = useState(artworks[0]);
@@ -8,6 +8,7 @@ const ImageViewer = ({ artworks }) => {
         let index = artworks.indexOf(currentImage) + dir;
         const len = artworks.length;
 
+        // Allow looping of images
         if (index < 0) {
             index = len - 1;
         } else if (index >= len) {
@@ -45,10 +46,12 @@ const ThumbnailGallery = ({ artworks, currentImage, setCurrentImage }) => {
         const currentIndex = artworks.indexOf(currentImage);
         const len = artworks.length;
 
+        // Basecase as the max to display is 6
         if (len <= 6) {
             return artworks;
         } 
 
+        // Calculates the starting index ensuring the images don't move instantly when going to next
         const startInd = Math.max(0, Math.min(currentIndex-3, len-6));
         return artworks.slice(startInd, startInd+6);
     }

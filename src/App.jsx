@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Nav, NavItem } from './components/Nav';
-import Home from './components/Home';
-import Game from './components/Game';
-import Upcoming from './components/Upcoming';
-import Anticipated from './components/Anticipated';
-import Search from './components/Search';
-import SearchBar from './components/SearchBar';
-import NotFound from './components/NotFound';
+import { Nav, NavItem } from './components/common/Nav';
+import Home from './components/Home/Home';
+import Game from './components/Game/Game';
+import Upcoming from './components/GameListPages/Upcoming';
+import Anticipated from './components/GameListPages/Anticipated';
+import Search from './components/Search/Search';
+import SearchBar from './components/Search/SearchBar';
+import NotFound from './components/common/NotFound';
 
 const App = () => {
 

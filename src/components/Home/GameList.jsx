@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import games from "../services/games";
-import ImageLinkGrid from "./ImageLinkGrid";
-import ImageLink from "./ImageLink";
-import LoadDiv from "./LoadDiv";
+import games from "../../services/games";
+import ImageLinkGrid from "../Game/ImageLinkGrid";
+import ImageLink from "../common/ImageLink";
+import LoadDiv from "../common/LoadDiv";
 
 const GameList = ({ name }) => {
+    // Used on home page for the most rated and popular lists
     const queryFn = name === "Most popular" ? games.getPopular : games.getTop;
     const result = useQuery({
         queryKey: [`${name}-games`],

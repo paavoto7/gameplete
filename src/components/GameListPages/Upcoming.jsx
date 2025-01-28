@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import games from "../services/games";
+import games from "../../services/games";
 import ContentGrid from "./ContentGrid";
-import LoadDiv from "./LoadDiv";
+import LoadDiv from "../common/LoadDiv";
 import { useState } from "react";
 
 const platforms = [

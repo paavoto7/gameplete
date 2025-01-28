@@ -1,6 +1,6 @@
 # Gameplete
 
-This is the complete and available fullstack app for [Gameplete](https://gameplete.pages.dev/). It includes bot the deployed frontend and backend.
+This is the complete and publicly available fullstack app for [Gameplete](https://gameplete.pages.dev/). It includes both the deployed frontend and backend.
 
 
 ## What is it
@@ -20,4 +20,7 @@ to Hono on such a small project seemed very straightforward and manageable, whic
 it precisely was.
 
 #### Miscellaneous details
-Due to the migration mentioned above, the components directory is a bit of a mess. It is better organised in the original frontend repository. Another thing this migration to Hono and Cloudflare caused is that the backend tests don't work anymore.
+Migration to Hono and Cloudflare caused the backend tests to stop working.
+Adding testing to both the front- and backend is something that should be done in the future.
+My commenting philosophy in this project was to make components and functions as readable as possible on their own.
+I added comments when they were strictly necessary.

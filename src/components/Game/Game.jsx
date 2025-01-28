@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom"
-import games from "../services/games";
-import { BackgroundImage} from "./Image";
+import games from "../../services/games";
+import { BackgroundImage} from "../common/Image";
 import GameInfo from "./GameInfo";
 import ImageViewer from "./ImageViewer";
 import ImageLinkGrid from "./ImageLinkGrid";
-import ImageLink from "./ImageLink";
-import LoadDiv from "./LoadDiv";
+import ImageLink from "../common/ImageLink";
+import LoadDiv from "../common/LoadDiv";
 
 const Game = () => {
     const id = useParams().id;

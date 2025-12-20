@@ -17,7 +17,7 @@ const SEARCH_PARAMS = {
                 genres.name, release_dates.human, expansions.name, similar_games.cover.image_id, similar_games.name,
                 game_modes.name, game_engines.name, screenshots.image_id;`,
     "search": `fields name, cover.image_id;
-                where cover.image_id != null & category = (0,2,4,8,9,10,13);
+                where cover.image_id != null & game_type = (0,2,4,8,9,10,13);
                 limit 40;`,
     "popular": `fields game_id; sort value desc; where popularity_type = 1;`
 }

@@ -37,7 +37,7 @@ const BackgroundImage = ({ image_id, size="cvr_big" }) => {
         <div
             alt="background_image"
             style={{ backgroundImage: bg }}
-            className={`h-1/2 w-screen brightness-50 fixed top-0 left-0 -z-50 blur-sm bg-center bg-no-repeat bg-cover`}
+            className={`h-1/2 w-screen brightness-50 fixed top-0 left-0 -z-50 blur-xs bg-center bg-no-repeat bg-cover`}
         />
     )
 }

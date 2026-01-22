@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 
 const Nav = ({ children }) => {
     return(
-        <nav className="min-w-fit w-1/3 m-auto text-center my-5 sm:mb-0 pb-2 border-b-2">
+        <nav className="min-w-fit w-1/3 m-auto text-center my-5 sm:mb-0 pb-2 border-b-2 border-white">
             <ul className="inline-flex list-none text-lg xl:text-xl 2xl:text-2xl text-white font-semibold">
                 {children}
             </ul>
@@ -19,4 +19,4 @@ const NavItem = ({ route, text }) => {
     )
 }
 
-export {Nav, NavItem }
+export { Nav, NavItem }

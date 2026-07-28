@@ -35,6 +35,6 @@
     "globals": "^17.7.0",
     "tailwindcss": "^4.3.2",
     "vite": "^8.1.4",
-    "wrangler": "^4.110.0"
+    "wrangler": "^4.114.0"
   }
 }

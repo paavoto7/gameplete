@@ -5,7 +5,7 @@ import ImageLink from "../common/ImageLink";
 import LoadDiv from "../common/LoadDiv";
 
 const Search = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const query = searchParams.get("query");
     const result = useQuery({
         queryKey: [`search-${query}`],

@@ -7,6 +7,7 @@ import ImageViewer from "./ImageViewer";
 import ImageLinkGrid from "./ImageLinkGrid";
 import ImageLink from "../common/ImageLink";
 import LoadDiv from "../common/LoadDiv";
+import NotFound from "../common/NotFound";
 
 const Game = () => {
     const id = useParams().id;
@@ -17,11 +18,19 @@ const Game = () => {
         staleTime: 1 * 60 * 1000
     })
 
+    if (result.error?.status === 404) {
+        return <NotFound />
+    }
+
     if (result.isLoading || result.isError) {
         return <LoadDiv status={result.status} />
     }
 
     const gamedata = result.data[0];
+
+    if (!gamedata) {
+        return <NotFound />
+    }
 
     // Find the widest image for background
     const bg = gamedata.artworks?.reduce(

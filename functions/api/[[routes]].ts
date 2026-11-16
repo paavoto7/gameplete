@@ -8,10 +8,17 @@ import Api from "../../services_func/api";
 import ZodErrorHandler from "../../utils/zodErrorHandler";
 
 const searchSchema = z.object({
+  // Quotes and backslashes are stripped first so the length rules apply
+  // to the term that is actually sent to IGDB
   query: z
     .string()
-    .min(3, { message: "Must be 3 or more characters long" })
-    .max(100, { message: "Must be 100 characters or less" })
+    .transform((value) => value.replace(/["\\]/g, ""))
+    .pipe(
+      z
+        .string()
+        .min(3, { message: "Must be 3 or more characters long" })
+        .max(100, { message: "Must be 100 characters or less" })
+    )
 });
 
 const gameSchema = z.object({

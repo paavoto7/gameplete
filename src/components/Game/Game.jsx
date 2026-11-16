@@ -38,7 +38,7 @@ const Game = () => {
             <GameInfo props={gamedata} />
             
             {(gamedata.artworks || gamedata.screenshots) &&
-            <ImageViewer artworks={images} />}
+            <ImageViewer key={id} artworks={images} />}
 
             <div className="w-11/12 sm:w-4/5 m-auto">
                 <ImageLinkGrid name="Similar games" cols="sm:grid-cols-5">

@@ -1,5 +1,6 @@
 import { Hono } from 'hono';
 import { handle } from "hono/cloudflare-pages";
+import { HTTPException } from 'hono/http-exception';
 import { secureHeaders } from 'hono/secure-headers';
 import { cache } from 'hono/cache';
 import { z } from "zod";
@@ -31,13 +32,23 @@ const upcomingSchema = z.object({
 
 type Bindings = {
   CLIENT_SECRET: string,
-  CLIENT_ID: string
+  CLIENT_ID: string,
+  AUTH_URL: string
 }
 
 const app = new Hono<{ Bindings: Bindings }>().basePath("/api");
 app.use(secureHeaders())
 
 const api = new Api();
+
+// Anything thrown while talking to Twitch or IGDB ends up here
+app.onError((error, c) => {
+  if (error instanceof HTTPException) {
+    return error.getResponse();
+  }
+  console.error(error);
+  return c.json({ error: "Could not fetch data from IGDB" }, 502);
+})
 
 app.get(
   "*",
@@ -54,35 +65,20 @@ app.get("/game/:id",
     ZodErrorHandler
   ),
   async (c) => {
-    await api.getToken(c.env);
     const { id } = c.req.valid("param");
-    try {
-        const game_data = await api.getGame(id);
-        return c.json(game_data);
-    } catch (error) {
-        c.status(500)
-    }
+    const game_data = await api.getGame(c.env, id);
+    return c.json(game_data);
 })
 
 app.get("/popular", async (c) => {
-  await api.getToken(c.env);
-  try {
-      const game_data = await api.getPopular();
-      return c.json(game_data);
-  } catch (error) {
-      return c.status(500)
-  }
+  const game_data = await api.getPopular(c.env);
+  return c.json(game_data);
 })
 
 app.get("/anticipated", async (c) => {
-  await api.getToken(c.env);
   const date = ~~(Date.now() / 1000);
-  try {
-      const game_data = await api.getAnticipated(date);
-      return c.json(game_data);
-  } catch (error) {
-    return c.status(500)
-  }
+  const game_data = await api.getAnticipated(c.env, date);
+  return c.json(game_data);
 })
 
 app.get("/upcoming",
@@ -92,42 +88,27 @@ app.get("/upcoming",
     ZodErrorHandler
   ),
   async (c) => {
-    await api.getToken(c.env);
     const date = ~~(Date.now() / 1000);
     const { platid } = c.req.valid("query");
-    try {
-        const game_data = await api.getUpcoming(date, platid);
-        return c.json(game_data);
-    } catch (error) {
-      return c.status(500)
-    }
+    const game_data = await api.getUpcoming(c.env, date, platid);
+    return c.json(game_data);
 })
 
-app.get("/search", 
+app.get("/search",
   zValidator(
     "query",
     searchSchema,
     ZodErrorHandler
   ),
   async (c) => {
-    await api.getToken(c.env);
     const { query } = c.req.valid("query");
-    try {
-        const game_data = await api.searchGame(query);
-        return c.json(game_data);
-    } catch (error) {
-      return c.status(500)
-    }
+    const game_data = await api.searchGame(c.env, query);
+    return c.json(game_data);
 })
 
 app.get("/top", async (c) => {
-  await api.getToken(c.env);
-  try {
-      const game_data = await api.getTop();
-      return c.json(game_data);
-  } catch (error) {
-    return c.status(500)
-  }
+  const game_data = await api.getTop(c.env);
+  return c.json(game_data);
 })
 
 export const onRequest = handle(app);

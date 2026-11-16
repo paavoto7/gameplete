@@ -1,7 +1,9 @@
 const baseUrl = "/api";
 
 const request = async (url) => {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+        headers: {"Content-Type": "application/json"} 
+    });
     if (!response.ok) {
         // The status lets callers tell a missing resource from a failed request
         const error = new Error(`Response status ${response.status}`);

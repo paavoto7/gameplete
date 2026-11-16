@@ -1,12 +1,7 @@
 import InfoCategory from "./InfoCategory";
 import { Link } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
 
-const CategorySection = ({ id }) => {
-    const client = useQueryClient();
-
-    const gamedata = client.getQueryData([`game-${id}`])[0];
-
+const CategorySection = ({ gamedata }) => {
     const developers = gamedata?.involved_companies
         ?.filter(company => company.developer)
         .map(developer => developer.company);

@@ -1,7 +1,7 @@
 const IMAGE_URL = "https://images.igdb.com/igdb/image/upload/t_"
 
 const IMAGE_SIZES = {
-    "cvr_sml":" cover_small",
+    "cvr_sml": "cover_small",
     "s_med": "screenshot_med",
     "cvr_big": "cover_big",
     "logo": "logo_med",
@@ -30,8 +30,11 @@ const BackgroundImage = ({ image_id, size="cvr_big" }) => {
     // Adding the bg this way makes fading possible
 
     // Didn't seem to work as Tailwind class so using style here instead
-    const bg = `linear-gradient(0deg,rgba(0,0,26,1)20%,rgba(0,0,26,0.8),rgba(0,0,26,0.5),rgba(0,0,0,0))
-                ,url(${IMAGE_URL}${IMAGE_SIZES[size]}/${image_id}.webp)`
+    const gradient = "linear-gradient(0deg,rgba(0,0,26,1)20%,rgba(0,0,26,0.8),rgba(0,0,26,0.5),rgba(0,0,0,0))";
+    // Some games have neither artworks nor screenshots
+    const bg = image_id
+        ? `${gradient},url(${IMAGE_URL}${IMAGE_SIZES[size]}/${image_id}.webp)`
+        : gradient;
 
     return (
         <div

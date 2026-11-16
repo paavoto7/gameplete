@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import games from "../../services/games";
 import ContentGrid from "./ContentGrid";
 import LoadDiv from "../common/LoadDiv";
@@ -19,6 +19,8 @@ const Upcoming = () => {
     const result = useQuery({
         queryKey: [`upcoming-games-${platid ?? 0}`],
         queryFn: () => games.getUpcoming(platid),
+        // Keeps the current list and the platform buttons visible while switching
+        placeholderData: keepPreviousData,
         staleTime: 4 * 60 * 1000
     });
 
@@ -38,7 +40,7 @@ const Upcoming = () => {
             <div className="my-6 flex-col justify-center">
                 <h1 className="w-44 sm:w-48 text-center text-3xl sm:text-4xl font-bold border-b-2 pb-2 m-auto">Upcoming</h1>
                 <div className="flex w-11/12 m-auto justify-center">
-                    <h2 className="text-xl font-bold pt-2 mt-2">Sort by:</h2>
+                    <h2 className="text-xl font-bold pt-2 mt-2">Platform:</h2>
                     <ul className="list-none flex overflow-x-auto">
                         {platforms.map(platform => 
                             <li key={platform.id}>

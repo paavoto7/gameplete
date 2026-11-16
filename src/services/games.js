@@ -37,10 +37,10 @@ const getTop = async () => {
 }
 
 const searchGames = async (params) => {
-    if (!params.trim() || params.length < 3) {
+    if (!params?.trim() || params.length < 3) {
         return [];
     }
-    return await request(`${baseUrl}/search?query=${params}`);
+    return await request(`${baseUrl}/search?query=${encodeURIComponent(params)}`);
 }
 
 export default { getGameById, getUpcoming, getPopular, searchGames, getTop, getAnticipated }

@@ -21,7 +21,7 @@ const GameInfo = ({ props }) => {
                 </div>
             </div>
 
-            <CategorySection id={props.id} />
+            <CategorySection gamedata={props} />
 
         </section>
     )

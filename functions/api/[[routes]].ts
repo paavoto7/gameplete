@@ -23,7 +23,10 @@ const searchSchema = z.object({
 });
 
 const gameSchema = z.object({
-  id: z.coerce.number({ message: "The id must be an integer" }).int()
+  id: z.coerce
+    .number({ message: "The id must be a positive integer" })
+    .int({ message: "The id must be a positive integer" })
+    .positive({ message: "The id must be a positive integer" })
 });
 
 const upcomingSchema = z.object({
@@ -67,6 +70,9 @@ app.get("/game/:id",
   async (c) => {
     const { id } = c.req.valid("param");
     const game_data = await api.getGame(c.env, id);
+    if (game_data.length === 0) {
+      return c.json({ error: "Game not found" }, 404);
+    }
     return c.json(game_data);
 })
 

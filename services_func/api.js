@@ -130,8 +130,11 @@ class Api {
     }
 
     async searchGame(search_param) {
+        // Strip quotes and backslashes so the term can't break out of the
+        // quoted string and append its own query clauses
+        const term = search_param.replace(/["\\]/g, "");
         return await this.request("games",
-            `${SEARCH_PARAMS["search"]}search "${search_param}";`
+            `${SEARCH_PARAMS["search"]}search "${term}";`
         )
     }
 
